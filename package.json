@@ -1,5 +1,5 @@
 {
-  "name": "@oatclaw/hive-mcp",
+  "name": "hive-mcp",
   "version": "1.0.0",
   "description": "MCP server for Agent Hive — coding agent on a VPS",
   "type": "module",
