@@ -1,0 +1,38 @@
+{
+  "name": "@oatclaw/hive-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Agent Hive — coding agent on a VPS",
+  "type": "module",
+  "bin": {
+    "hive-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npx -p typescript tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "agent-hive",
+    "coding-agent",
+    "openclaw"
+  ],
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.17",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oatclaw/hive-mcp.git"
+  }
+}
