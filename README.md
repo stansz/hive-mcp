@@ -1,4 +1,4 @@
-# @oatclaw/hive-mcp
+# hive-mcp
 
 MCP server for [Agent Hive](https://github.com/stansz/agent-hive) — connect any MCP-compatible client (Claude Code, Cursor, OpenClaw, etc.) to your Hive coding agent.
 
