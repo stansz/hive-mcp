@@ -214,6 +214,18 @@ const GUIDE = {
   },
 
   providers: {
+    zai: {
+      label: "Z.AI (Zhipu AI)",
+      description: "GLM-5.1, GLM-5-Turbo. Chinese AI lab with strong coding models. OpenAI-compatible API via coding plan endpoint.",
+      status: "available",
+      setupNote: "Set ZAI_CODE in .env on the VPS.",
+    },
+    deepseek: {
+      label: "DeepSeek (direct)",
+      description: "DeepSeek V4 Pro/Flash, R1. Direct API access with OpenAI-compatible endpoint. Lower cost than routing through OpenRouter.",
+      status: "available",
+      setupNote: "Set DEEPSEEK_API_KEY in .env on the VPS.",
+    },
     openrouter: {
       label: "OpenRouter",
       description: "Multi-provider gateway. Access 250+ models from Anthropic, OpenAI, Google, DeepSeek, Meta, and more through a single API key.",
@@ -244,16 +256,12 @@ const GUIDE = {
       status: "available_if_key_added",
       setupNote: "Add GROQ_API_KEY to /home/jc/agent-hive/.env and restart the service.",
     },
-    deepseek: {
-      label: "DeepSeek (direct)",
-      description: "Direct DeepSeek API access. Lower cost than OpenRouter for DeepSeek models.",
-      status: "available_if_key_added",
-      setupNote: "Add DEEPSEEK_API_KEY to /home/jc/agent-hive/.env and restart the service.",
-    },
   },
 
   models: {
     quick: [
+      { id: "glm-5-turbo", provider: "zai", label: "GLM-5 Turbo (Z.AI)", description: "Fast GLM model via Z.AI coding plan. Good for quick edits and simple tasks." },
+      { id: "deepseek-chat", provider: "deepseek", label: "DeepSeek V3 (direct)", description: "Fast, cheap, great for refactors and simple tasks via direct API." },
       { id: "deepseek/deepseek-v4-flash", provider: "openrouter", label: "DeepSeek V4 Flash", description: "Fast, cheap, great for refactors and simple tasks. ~$0.27/M input." },
       { id: "google/gemini-2.5-flash", provider: "openrouter", label: "Gemini 2.5 Flash", description: "Fast with 1M context window. Good for large file analysis." },
       { id: "openai/gpt-4.1-nano", provider: "openrouter", label: "GPT-4.1 Nano", description: "Smallest GPT-4.1. Good for simple edits, cheapest OpenAI model." },
@@ -261,6 +269,8 @@ const GUIDE = {
       { id: "qwen/qwen3-coder", provider: "openrouter", label: "Qwen 3 Coder", description: "Specialized coding model. Strong at code generation and refactoring." },
     ],
     balanced: [
+      { id: "glm-5.1", provider: "zai", label: "GLM-5.1 (Z.AI)", description: "Z.AI's flagship coding model. Strong reasoning and code quality via direct API." },
+      { id: "deepseek-reasoner", provider: "deepseek", label: "DeepSeek R1 (direct)", description: "DeepSeek's reasoning model via direct API. Strong at complex logic." },
       { id: "deepseek/deepseek-v4-pro", provider: "openrouter", label: "DeepSeek V4 Pro", description: "Strong reasoning, good for complex refactors and debugging. ~$1.10/M input." },
       { id: "anthropic/claude-sonnet-4-20250514", provider: "openrouter", label: "Claude Sonnet 4", description: "Excellent code quality and reasoning. Top-tier for architecture and review." },
       { id: "google/gemini-2.5-pro", provider: "openrouter", label: "Gemini 2.5 Pro", description: "1M context, strong coding. Great for large codebase analysis." },
@@ -268,6 +278,8 @@ const GUIDE = {
       { id: "openai/o4-mini", provider: "openrouter", label: "o4 Mini", description: "OpenAI reasoning model. Strong at complex logic and debugging." },
     ],
     powerful: [
+      { id: "glm-5.1", provider: "zai", label: "GLM-5.1 (Z.AI)", description: "Z.AI's flagship. Competitive code quality with generous context window via direct API." },
+      { id: "deepseek-reasoner", provider: "deepseek", label: "DeepSeek R1 (direct)", description: "DeepSeek's strongest reasoning model via direct API." },
       { id: "anthropic/claude-sonnet-4-20250514", provider: "openrouter", label: "Claude Sonnet 4", description: "Best-in-class code generation. Use for architecture, complex features, and thorough reviews." },
       { id: "google/gemini-2.5-pro", provider: "openrouter", label: "Gemini 2.5 Pro", description: "1M context window. Analyze entire codebases in one pass." },
       { id: "openai/gpt-4.1", provider: "openrouter", label: "GPT-4.1", description: "OpenAI's latest flagship. Excellent instruction following and code quality." },
