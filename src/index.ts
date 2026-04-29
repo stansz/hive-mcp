@@ -38,8 +38,8 @@ server.tool(
     prompt: z.string().min(1).describe("Task description"),
     repo: z.string().optional().describe("Git repo URL (optional)"),
     branch: z.string().optional().describe("Branch name (optional)"),
-    model: z.string().optional().describe("Model override (e.g. deepseek/deepseek-v4-flash)"),
-    provider: z.string().optional().describe("Provider override (e.g. openrouter, anthropic)"),
+    model: z.string().optional().describe("Model override"),
+    provider: z.string().optional().describe("Provider override"),
     thinkingLevel: z.enum(["off", "minimal", "low", "medium", "high", "xhigh"]).optional().describe("Thinking level. Omit for default."),
   },
   async ({ prompt, repo, branch, model, provider, thinkingLevel }) => {
@@ -157,13 +157,13 @@ const GUIDE = {
   providers: {
     deepseek: {
       label: "DeepSeek (direct)",
-      description: "DeepSeek V4 Pro/Flash, R1. Direct API access with OpenAI-compatible endpoint. Lower cost than routing through OpenRouter. Use model IDs: deepseek-v4-pro, deepseek-v4-flash (legacy: deepseek-chat, deepseek-reasoner).",
+      description: "Direct API access with OpenAI-compatible endpoint. Lower cost than routing through OpenRouter.",
       status: "available",
       setupNote: "Set DEEPSEEK_API_KEY in .env on the VPS.",
     },
     zai: {
       label: "Z.AI (Zhipu AI)",
-      description: "GLM-5.1, GLM-5-Turbo. Chinese AI lab with strong coding models. OpenAI-compatible API via coding plan endpoint.",
+      description: "Chinese AI lab with strong coding models. OpenAI-compatible API via coding plan endpoint."
       status: "available",
       setupNote: "Set ZAI_CODE in .env on the VPS.",
     },
