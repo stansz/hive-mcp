@@ -33,7 +33,7 @@ const server = new McpServer({
 
 server.tool(
   "hive_prompt",
-  "Start a coding task on the Agent Hive VPS. Supports auto-review and auto-PR pipeline.",
+  "Start a coding task on the Agent Hive VPS.",
   {
     prompt: z.string().min(1).describe("Task description"),
     repo: z.string().optional().describe("Git repo URL (optional)"),
@@ -137,7 +137,7 @@ server.tool(
   }
 );
 
-// ── hive_guide: features catalog + presets + model recommendations ──
+// ── hive_guide: features catalog + presets ──
 
 const GUIDE = {
   description: "Agent Hive — your self-hosted coding agent. Dispatch tasks, review code, and open PRs from any MCP client.",
@@ -248,7 +248,7 @@ const GUIDE = {
 
 server.tool(
   "hive_guide",
-  "Get the Agent Hive features, presets, and model recommendations. Use this to discover available providers, models, and preset prompts. Then dispatch via hive_prompt or hive_snippet.",
+  "Get the Agent Hive features, providers, and preset prompts. Then dispatch via hive_prompt or hive_snippet.",
   {},
   async () => {
     return {
