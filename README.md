@@ -1,29 +1,35 @@
 # hive-mcp
 
-MCP server for [Agent Hive](https://github.com/stansz/agent-hive) — connect any MCP-compatible client (Claude Code, Cursor, OpenClaw, etc.) to your Hive coding agent.
+MCP server for [Agent Hive](https://github.com/stansz/agent-hive) — connect any MCP-compatible client (Claude Code, Cursor, OpenClaw, etc.) to your self-hosted coding agent.
 
-## Setup
+## Quick Start
 
 ```bash
-# Configure env vars
-export HIVE_URL=https://your-hive-instance.com
+export HIVE_URL=https://your-hive.example.com
 export HIVE_TOKEN=your-api-token
 
-# Run
-npx @oatclaw/hive-mcp
+npx github:stansz/hive-mcp
 ```
+
+Not published to npm — run directly from GitHub. Requires Node >= 18.
 
 ## Tools
 
 | Tool | Description |
 |------|-------------|
-| `hive_prompt` | Start a coding task on the Hive VPS |
-| `hive_status` | Check status of a running/completed session |
-| `hive_abort` | Cancel a running session |
-| `hive_snippet` | Quick code task without a repo — send code + prompt, get result |
-| `hive_result` | Get the full output of a completed session |
+| `hive_prompt` | Start a coding task. Optionally clone a repo, set model/provider, run review cycles. |
+| `hive_status` | Check session state, message count, model, streaming status. |
+| `hive_abort` | Cancel a running session by ID. |
+| `hive_guide` | Get available providers, features, and preset prompt templates. |
 
 ## Configuration
+
+### Env Vars
+
+| Var | Required | Description |
+|-----|----------|-------------|
+| `HIVE_URL` | Yes | Base URL of your Agent Hive instance |
+| `HIVE_TOKEN` | Yes | API bearer token (must match the VPS `.env` API_TOKEN) |
 
 ### Claude Code (`.claude/settings.json`)
 ```json
@@ -31,10 +37,10 @@ npx @oatclaw/hive-mcp
   "mcpServers": {
     "agent-hive": {
       "command": "npx",
-      "args": ["@oatclaw/hive-mcp"],
+      "args": ["github:stansz/hive-mcp"],
       "env": {
-        "HIVE_URL": "https://hive.ogsapps.cc",
-        "HIVE_TOKEN": "your-token"
+        "HIVE_URL": "https://your-hive.example.com",
+        "HIVE_TOKEN": "your-api-token"
       }
     }
   }
@@ -47,10 +53,10 @@ npx @oatclaw/hive-mcp
   "mcpServers": {
     "agent-hive": {
       "command": "npx",
-      "args": ["@oatclaw/hive-mcp"],
+      "args": ["github:stansz/hive-mcp"],
       "env": {
-        "HIVE_URL": "https://hive.ogsapps.cc",
-        "HIVE_TOKEN": "your-token"
+        "HIVE_URL": "https://your-hive.example.com",
+        "HIVE_TOKEN": "your-api-token"
       }
     }
   }
@@ -64,10 +70,10 @@ npx @oatclaw/hive-mcp
     "servers": {
       "agent-hive": {
         "command": "npx",
-        "args": ["@oatclaw/hive-mcp"],
+        "args": ["github:stansz/hive-mcp"],
         "env": {
-          "HIVE_URL": "https://hive.ogsapps.cc",
-          "HIVE_TOKEN": "your-token"
+          "HIVE_URL": "https://your-hive.example.com",
+          "HIVE_TOKEN": "your-api-token"
         }
       }
     }
@@ -75,13 +81,18 @@ npx @oatclaw/hive-mcp
 }
 ```
 
-## Env Vars
+## Example
 
-| Var | Required | Description |
-|-----|----------|-------------|
-| `HIVE_URL` | Yes | Base URL of your Agent Hive instance |
-| `HIVE_TOKEN` | Yes | API bearer token |
+```bash
+# Start a task
+export HIVE_URL=https://your-hive.example.com
+export HIVE_TOKEN=your-token
+npx github:stansz/hive-mcp <<< '{"tool":"hive_prompt","args":{"prompt":"Write a hello world in Python"}}'
+
+# Check status (replace sessionId with actual)
+npx github:stansz/hive-mcp <<< '{"tool":"hive_status","args":{"sessionId":"abc-123"}}'
+```
 
 ## License
 
-BSD-3-Clause
+BSD 3-Clause
