@@ -1,7 +1,7 @@
 {
   "name": "hive-mcp",
   "version": "1.0.0",
-  "description": "MCP server for Agent Hive — coding agent on a VPS",
+  "description": "MCP server for Agent Hive \u2014 coding agent on a VPS",
   "type": "module",
   "bin": {
     "hive-mcp": "./dist/index.js"
@@ -33,6 +33,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oatclaw/hive-mcp.git"
+    "url": "https://github.com/stansz/hive-mcp.git"
   }
 }
