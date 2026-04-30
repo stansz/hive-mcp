@@ -5,31 +5,17 @@ MCP server for [Agent Hive](https://github.com/stansz/agent-hive) — connect an
 ## Quick Start
 
 ```bash
-export HIVE_URL=https://your-hive.example.com
-export HIVE_TOKEN=your-api-token
+# Make sure Agent Hive is running first (see stansz/agent-hive)
+# Then connect via MCP:
+export HIVE_URL=http://localhost:8080
+export HIVE_TOKEN=your-api-token   # Same token from your Hive .env file
 
 npx github:stansz/hive-mcp
 ```
 
-Not published to npm — run directly from GitHub. Requires Node >= 18.
+The `HIVE_TOKEN` must match the `API_TOKEN` you set in Agent Hive's `.env`. Generate one with `openssl rand -hex 32` if you haven't already.
 
-## Tools
-
-| Tool | Description |
-|------|-------------|
-| `hive_prompt` | Start a coding task. Optionally clone a repo, set model/provider, run review cycles. |
-| `hive_status` | Check session state, message count, model, streaming status. |
-| `hive_abort` | Cancel a running session by ID. |
-| `hive_guide` | Get available providers, features, and preset prompt templates. |
-
-## Configuration
-
-### Env Vars
-
-| Var | Required | Description |
-|-----|----------|-------------|
-| `HIVE_URL` | Yes | Base URL of your Agent Hive instance |
-| `HIVE_TOKEN` | Yes | API bearer token (must match the VPS `.env` API_TOKEN) |
+## Setup Examples
 
 ### Claude Code (`.claude/settings.json`)
 ```json
@@ -39,8 +25,8 @@ Not published to npm — run directly from GitHub. Requires Node >= 18.
       "command": "npx",
       "args": ["github:stansz/hive-mcp"],
       "env": {
-        "HIVE_URL": "https://your-hive.example.com",
-        "HIVE_TOKEN": "your-api-token"
+        "HIVE_URL": "http://localhost:8080",
+        "HIVE_TOKEN": "your-generated-token"
       }
     }
   }
@@ -55,8 +41,8 @@ Not published to npm — run directly from GitHub. Requires Node >= 18.
       "command": "npx",
       "args": ["github:stansz/hive-mcp"],
       "env": {
-        "HIVE_URL": "https://your-hive.example.com",
-        "HIVE_TOKEN": "your-api-token"
+        "HIVE_URL": "http://localhost:8080",
+        "HIVE_TOKEN": "your-generated-token"
       }
     }
   }
@@ -72,8 +58,8 @@ Not published to npm — run directly from GitHub. Requires Node >= 18.
         "command": "npx",
         "args": ["github:stansz/hive-mcp"],
         "env": {
-          "HIVE_URL": "https://your-hive.example.com",
-          "HIVE_TOKEN": "your-api-token"
+          "HIVE_URL": "http://localhost:8080",
+          "HIVE_TOKEN": "your-generated-token"
         }
       }
     }
@@ -81,12 +67,29 @@ Not published to npm — run directly from GitHub. Requires Node >= 18.
 }
 ```
 
+## Tools
+
+| Tool | Description |
+|------|-------------|
+| `hive_prompt` | Start a coding task. Optionally clone a repo, set model/provider, run review cycles. |
+| `hive_status` | Check session state, message count, model, streaming status. |
+| `hive_abort` | Cancel a running session by ID. |
+| `hive_guide` | Get available providers, features, and preset prompt templates. |
+
+## Configuration
+
+| Var | Required | Description |
+|-----|----------|-------------|
+| `HIVE_URL` | Yes | Base URL of your Agent Hive instance (e.g. `http://localhost:8080`) |
+| `HIVE_TOKEN` | Yes | API bearer token — must match the `API_TOKEN` in Hive's `.env` |
+
 ## Example
 
 ```bash
-# Start a task
-export HIVE_URL=https://your-hive.example.com
+export HIVE_URL=http://localhost:8080
 export HIVE_TOKEN=your-token
+
+# Start a task
 npx github:stansz/hive-mcp <<< '{"tool":"hive_prompt","args":{"prompt":"Write a hello world in Python"}}'
 
 # Check status (replace sessionId with actual)
